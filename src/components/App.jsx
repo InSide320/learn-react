@@ -4,6 +4,7 @@ import Counter from "./Counter";
 import InputText from "./InputText";
 import PostList from "./PostList";
 import MyButton from "./UI/button/MyButton";
+import MyInput from "./UI/input/MyInput";
 
 function App() {
   const [jsPosts, setJsPosts] = useState([
@@ -13,18 +14,36 @@ function App() {
     {id: 4, title: "JavaScript3", body: "Description"}
   ]);
 
+  const [titlePost, setTitlePost] = useState("");
+  const [descriptionPost, setDescriptionPost] = useState("");
+
+
+  const changeInputValue = (event) => {
+    setTitlePost(event.target.value)
+  }
+
+  const changeDescriptionValue = (event) => {
+    setDescriptionPost(event.target.value)
+  }
+  const addNewPost = (event) => {
+    // setTitle(event.target.value)
+  }
+
   return (
     <>
-      <header className="App-header">
-        <form style={{display: "flex", flexDirection: "column", gap: "10px", width: "25%"}}>
-          <input type={"text"} placeholder={"Name post"}/>
-          <input type={"text"} placeholder={"Description post"}/>
-          <MyButton>Create post</MyButton>
-        </form>
-        <PostList props={jsPosts} title={"JavaScrip Post"}/>
-        <Counter/>
-        <InputText/>
-      </header>
+      <header className="App-header"></header>
+
+      <form style={{display: "flex", flexDirection: "column", gap: "10px", width: "25%"}}>
+        <MyInput value={titlePost} onChange={changeInputValue} type={"text"} placeholder={"Name post"}/>
+        <MyInput value={descriptionPost} onChange={changeDescriptionValue} type={"text"} placeholder={"Description post"}/>
+        <MyButton onClick={addNewPost}>Create post</MyButton>
+      </form>
+      <PostList props={jsPosts} title={"JavaScrip Post"}/>
+      <Counter/>
+      <InputText/>
+      <footer>
+
+      </footer>
     </>
   );
 }
